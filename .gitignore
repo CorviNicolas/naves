@@ -34,3 +34,4 @@ build/
 
 navesDB.mv.db
 navesDB.trace.db
+schema.sql
