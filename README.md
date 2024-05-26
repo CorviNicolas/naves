@@ -59,4 +59,4 @@ La app está segurizada con Basic auth, usuario: ***user*** password ***user***
 
 ## Librería para facilitar mantenimiento scripts DDL
 Se configuró JPA para que genere un script dentro de la raíz del proyecto, llamado ***schema.sql*** (configurable).  
-Generará el script una vez que se apague la aplicación.  
+Generará el script una vez que se apague la aplicación.

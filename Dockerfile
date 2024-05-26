@@ -4,12 +4,12 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 FROM openjdk:21-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/target/naves-*.jar /app.jar
+COPY --from=builder /app/target/naves-*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
