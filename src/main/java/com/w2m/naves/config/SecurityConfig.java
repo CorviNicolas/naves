@@ -34,15 +34,17 @@ public class SecurityConfig {
                                            @Value("${spring.h2.console.enabled:false}") boolean h2Console) throws Exception {
         return http
                 .authorizeHttpRequests(authz -> {
-                            authz.requestMatchers(multipleAntPathRequestMatchers(HttpMethod.GET, "/docs","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")).permitAll();
+                            authz.requestMatchers(multipleAntPathRequestMatchers(HttpMethod.GET, "/docs", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")).permitAll();
                             if (h2Console) {
                                 authz.requestMatchers(PathRequest.toH2Console()).permitAll();
+                                authz.requestMatchers("/h2-console/**");
                             }
                             authz.anyRequest().authenticated();
                         }
                 )
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .build();
     }
 

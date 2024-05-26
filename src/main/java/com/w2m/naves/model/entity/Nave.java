@@ -9,7 +9,8 @@ import jakarta.validation.constraints.NotNull;
 @Table(indexes = @Index(name = "idx_nave_nombre", columnList = "nombre"))
 public class Nave {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nave")
+    @SequenceGenerator(name = "seq_nave", allocationSize = 1, sequenceName = "seq_nave")
     private Long naveId;
     @Column(nullable = false)
     private String nombre;

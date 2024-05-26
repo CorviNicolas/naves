@@ -59,4 +59,7 @@ La app está segurizada con Basic auth, usuario: ***user*** password ***user***
 
 ## Librería para facilitar mantenimiento scripts DDL
 Se configuró JPA para que genere un script dentro de la raíz del proyecto, llamado ***schema.sql*** (configurable).  
+Para generar el script:  
+Descomentar property ***spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create***  
+Descomentar property ***spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata***  
 Generará el script una vez que se apague la aplicación.
