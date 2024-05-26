@@ -5,7 +5,10 @@ import com.w2m.naves.api.dto.ModificarNaveRequest;
 import com.w2m.naves.api.dto.NaveDTO;
 import com.w2m.naves.service.NaveService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +25,10 @@ public class NavesController {
 
     @Operation(description = "Obtiene una pagina de naves filtrando opcionalmente por nombre")
     @GetMapping
+    @PageableAsQueryParam
     public Page<NaveDTO> obtenerNaves(
             @Schema(description = "El nombre de la nave") @RequestParam(value = "nombre", required = false) String nombre,
-            Pageable pageable) {
+            @Parameter(hidden = true) Pageable pageable) {
         return naveService.obtenerNaves(nombre, pageable);
     }
 
@@ -34,16 +38,16 @@ public class NavesController {
         return naveService.obtenerNave(id);
     }
 
-    @Operation(description = "Modifica una nave")
+    @Operation(description = "Crea una nave")
     @PostMapping
-    public NaveDTO crearNave(@RequestBody CrearNaveRequest crearNave) {
+    public NaveDTO crearNave(@RequestBody @Valid CrearNaveRequest crearNave) {
         return naveService.crearNave(crearNave);
     }
 
     @Operation(description = "Modifica una nave")
     @PutMapping("/{id}")
-    public NaveDTO modificarNave(@PathVariable Long id, @RequestBody ModificarNaveRequest modificarNave) {
-        return naveService.modificarNaveRequest(id, modificarNave);
+    public NaveDTO modificarNave(@PathVariable Long id, @RequestBody @Valid ModificarNaveRequest modificarNave) {
+        return naveService.modificarNave(id, modificarNave);
     }
 
     @Operation(description = "Elimina una nave")

@@ -11,6 +11,6 @@ public interface NaveService {
     Page<NaveDTO> obtenerNaves(String nombre, Pageable pageable);
     NaveDTO obtenerNave(Long id);
     NaveDTO crearNave(CrearNaveRequest crearNave);
-    NaveDTO modificarNaveRequest(Long id, ModificarNaveRequest modificarNave);
+    NaveDTO modificarNave(Long id, ModificarNaveRequest modificarNave);
     void eliminarNave(Long id);
 }

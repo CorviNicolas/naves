@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -53,6 +54,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorDTO> handleIllegalStateException(IllegalStateException e) {
         ErrorDTO error = errorDTO("ILLEGAL_STATE", e.getMessage(), e);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorDTO> handleArgumentNotValid(MethodArgumentNotValidException e) {
+        ErrorDTO error = errorDTO("ARGUMENTO_NO_VALIDO", e.getMessage(), e);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 

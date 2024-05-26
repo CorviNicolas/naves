@@ -23,7 +23,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   naves:
-    image: sarasa
+    image: ncorvi94/naves:1.0.0
     depends_on:
       - kafka
     ports:

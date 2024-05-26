@@ -31,6 +31,10 @@ public class KafkaProducerConfig {
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         configProps.put(
+                ProducerConfig.MAX_BLOCK_MS_CONFIG,
+                5000
+        );
+        configProps.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);

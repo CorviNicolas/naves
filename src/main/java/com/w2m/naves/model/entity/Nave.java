@@ -3,6 +3,7 @@ package com.w2m.naves.model.entity;
 import com.w2m.naves.api.dto.CrearNaveRequest;
 import com.w2m.naves.api.dto.ModificarNaveRequest;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(indexes = @Index(name = "idx_nave_nombre", columnList = "nombre"))
@@ -10,6 +11,7 @@ public class Nave {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
     private Long naveId;
+    @Column(nullable = false)
     private String nombre;
 
     public Long getNaveId() {
