@@ -57,6 +57,10 @@ Para acceder a la documentación swagger http://localhost:8080/docs
 ## Seguridad
 La app está segurizada con Basic auth, usuario: ***user*** password ***user***
 
+## Paginado  
+La consulta de naves viene con soporte para paginado, utilizando los query params **page** (por defecto 0) y **size** (por defecto 20).  
+Tambien dispone de sorting, con el query param **sort**.  
+
 ## Librería para facilitar mantenimiento scripts DDL
 Se configuró JPA para que genere un script dentro de la raíz del proyecto, llamado ***schema.sql*** (configurable).  
 Para generar el script:  
